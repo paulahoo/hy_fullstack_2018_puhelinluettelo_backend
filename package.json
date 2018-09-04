@@ -1,0 +1,27 @@
+{
+  "name": "hy_fullstack_2018_puhelinluettelo_backend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulahoo/hy_fullstack_2018_puhelinluettelo_backend.git"
+  },
+  "author": "paulahoo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paulahoo/hy_fullstack_2018_puhelinluettelo_backend/issues"
+  },
+  "homepage": "https://github.com/paulahoo/hy_fullstack_2018_puhelinluettelo_backend#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}

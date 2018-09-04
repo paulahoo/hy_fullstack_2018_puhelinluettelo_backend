@@ -1,8 +1,28 @@
-const express = require('express')
+const express = require('express'),
+  morgan = require('morgan')
 const app = express()
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
+
+morgan.token('data', function getData(res) {
+    return (JSON.stringify(res.body))
+});
+
+const loggerFormat = ':method :url :data :status :res[content-length] :response-time ms';
+
+
+app.use(morgan(loggerFormat, {
+    skip: function (req, res) {
+        return res.statusCode < 400
+    }, stream: process.stderr
+}));
+
+app.use(morgan(loggerFormat, {
+    skip: function (req, res) {
+        return res.statusCode >= 400
+    }, stream: process.stdout
+}));
 
 let persons = [
    {
@@ -73,7 +93,7 @@ app.post('/api/persons', (request, response) => {
       return response.status(400).json({error: 'number missing'})
     }
   }
-  
+
   if (persons.some(person => (person.name === body.name))) {
     return response.status(400).json({error: 'name must be unique'})
   }

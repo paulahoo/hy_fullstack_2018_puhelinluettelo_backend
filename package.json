@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/paulahoo/hy_fullstack_2018_puhelinluettelo_backend#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"

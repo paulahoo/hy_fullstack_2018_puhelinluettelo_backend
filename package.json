@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/paulahoo/hy_fullstack_2018_puhelinluettelo_backend#readme",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "morgan": "^1.9.0"
   },

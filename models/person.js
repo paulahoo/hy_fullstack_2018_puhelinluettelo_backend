@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
-const url = 'mongodb://user:pass@ds243502.mlab.com:43502/persons'
+if ( process.env.PERSON_ENV !== 'production' ) {
+  require('dotenv').config()
+}
+
+const url = process.env.MONGODB_URI
 
 const options = { useNewUrlParser: true }
 
@@ -18,6 +22,18 @@ PersonSchema.statics.format = function (person) {
     id: person.id
   }
 }
+
+/*PersonSchema.statics.updatePerson = function(person, cb) {
+  Person.find({name : person.name}).exec(function(err, docs) {
+    if (docs.length){
+      cb('Name exists already', null);
+    } else {
+      person.save(function(err) {
+        cb(err,user);
+      }
+    }
+  })
+})*/
 
 const Person = mongoose.model('Person', PersonSchema)
 

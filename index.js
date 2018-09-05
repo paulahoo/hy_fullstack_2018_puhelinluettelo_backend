@@ -4,6 +4,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const Person = require('./models/person')
+require('dotenv').config()
 
 app.use(cors())
 app.use(express.static('build'))
@@ -125,24 +126,27 @@ app.post('/api/persons', (request, response) => {
     }
   }
 
-  if (persons.some(person => (person.name === body.name))) {
-    return response.status(400).json({error: 'name must be unique'})
-  }
-
   const person = new Person({
     name: body.name,
     number: body.number,
     id: generateId()
   })
 
-  person
-    .save()
-    .then(savedPerson => {
-      response.json(Person.format(savedPerson))
-    })
-    .catch(error => {
-      console.log(error)
-      response.status(400).send({ error: '' })
+  Person
+    .find({name: person.name})
+    .then(result => {
+      if (result.length === 0) {
+        person.save()
+        .then(savedPerson => {
+          response.json(Person.format(savedPerson))
+        })
+        .catch(error => {
+          console.log(error)
+          response.status(400).send({ error: '' })
+        })
+      } else {
+        response.status(401).send({ error: 'Name allready exists' })
+      }
     })
 })
 

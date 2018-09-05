@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 // korvaa url oman tietokantasi urlilla. ethän laita salasanaa Githubiin!
-const url = 'mongodb://user:pwd@ds243502.mlab.com:43502/persons'
+const url = 'mongodb://user:pass@ds243502.mlab.com:43502/persons'
 const options = { useNewUrlParser: true }
 
 mongoose.connect(url, options)
